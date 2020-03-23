@@ -1,0 +1,35 @@
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+    const header = document.querySelector(headerSelector),
+            tab = document.querySelectorAll(tabSelector),
+            content = document.querySelectorAll(contentSelector);
+    const hideTabContent = () => {
+        content.forEach(item => {
+            item.style.display = 'none';
+        })
+        tab.forEach(item => {
+            item.classList.remove(activeClass);
+        });
+    }
+    const showTabContent = (index = 0) => {
+        content[index].style.display = 'block';
+        tab[index].classList.add(activeClass);
+    }
+
+    hideTabContent();
+    showTabContent();
+
+    header.addEventListener('click', event => {
+        const target = event.target;
+        if (target && 
+            (target.classList.contains(tabSelector.replace(/\./g, '')) ||
+        target.parentNode.classList.contains(tabSelector.replace(/\./g, '')))) {
+            tab.forEach((item, index) => {
+                if (target == item || target.parentNode == item) {
+                    hideTabContent();
+                    showTabContent(index);
+                }
+            })
+        }
+    });
+}
+export default tabs;

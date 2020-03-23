@@ -38,7 +38,7 @@ const modals = () => {
 
     bindModal('.phone_link', '.popup', '.popup .popup_close');
     bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
-    showModalByTime('.popup', 60000)
+    // showModalByTime('.popup', 60000)
 }
 
 export default modals;
