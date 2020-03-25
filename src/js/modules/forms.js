@@ -1,13 +1,11 @@
-const forms = () => {
-    const form = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input'),
-          phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+import checkNumInputs from './checkNumInputs';
 
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/g, '');
-        });
-    });
+const forms = (state) => {
+    const form = document.querySelectorAll('form'),
+          inputs = document.querySelectorAll('input');
+
+    checkNumInputs('input[name="user_phone"]');
+
     const message = {
         loading: 'Загрузка',
         success: 'Спасибо! Скоро мы с вами свяжемся',
@@ -34,6 +32,16 @@ const forms = () => {
             item.appendChild(statusMessage);
             
             const formData = new FormData(item);
+
+            if (item.getAttribute('data-calc') === 'end') {
+                for (const key in state) {
+                    if (state.hasOwnProperty(key)) {
+                        const element = state[key];
+                        formData.append(key, element)
+                    }
+                }
+            }
+            
             postData('assets/server.php', formData)
                 .then(res => {
                     statusMessage.textContent = message.success;
