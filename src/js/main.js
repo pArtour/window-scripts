@@ -2,7 +2,8 @@ import './slider';
 import modals from './modules/modals';
 import tabs from './modules/tabs';
 import forms from './modules/forms'
-import timer from './modules/timer'
+import timer from './modules/timer';
+import images from './modules/images';
 import changeModalState from './modules/changeModalState'
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +18,8 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
     tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
     forms(modalState);
-    timer('.container1', deadline)
+    timer('.container1', deadline);
+    images();
 });
 
 // const proxyurl = "https://cors-anywhere.herokuapp.com/";
