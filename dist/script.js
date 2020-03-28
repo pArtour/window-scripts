@@ -17546,14 +17546,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
   Object(_modules_timer__WEBPACK_IMPORTED_MODULE_4__["default"])('.container1', deadline);
   Object(_modules_images__WEBPACK_IMPORTED_MODULE_5__["default"])();
-}); // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-// const a = async word  => {
-//     const res = await fetch(`${proxyurl}http://www.eki.ee/dict/evs/index.cgi?Q=%${word}&F=V&C06=ru`);
-//     const data = await res.text();
-//     return data;
-// }
-// a('молоко')
-//     .then(data => console.log(data))
+});
 
 /***/ }),
 
@@ -17822,7 +17815,8 @@ var modals = function modals() {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector),
-        windows = document.querySelectorAll('[data-modal]');
+        windows = document.querySelectorAll('[data-modal]'),
+        scroll = calcScroll();
     trigger.forEach(function (element) {
       element.addEventListener('click', function (event) {
         if (event.target) {
@@ -17833,7 +17827,8 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.marginRight = "".concat(scroll, "px"); // document.body.classList.add('modal-open');
       });
     });
     close.addEventListener('click', function () {
@@ -17841,7 +17836,8 @@ var modals = function modals() {
         item.style.display = 'none';
       });
       modal.style.display = 'none';
-      document.body.style.overflow = ''; // document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.body.style.marginRight = "0px"; // document.body.classList.remove('modal-open');
     });
     modal.addEventListener('click', function (event) {
       if (event.target === modal && closeClickOverlay) {
@@ -17849,7 +17845,8 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = 'none';
-        document.body.style.overflow = ''; // document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.marginRight = "0px"; // document.body.classList.remove('modal-open');
       }
     });
   }
@@ -17859,6 +17856,18 @@ var modals = function modals() {
       document.querySelector(selector).style.display = 'block';
       document.body.style.overflow = 'hidden';
     }, time);
+  }
+
+  function calcScroll() {
+    var div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
   }
 
   bindModal('.phone_link', '.popup', '.popup .popup_close');

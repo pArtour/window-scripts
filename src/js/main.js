@@ -21,15 +21,3 @@ window.addEventListener('DOMContentLoaded', () => {
     timer('.container1', deadline);
     images();
 });
-
-// const proxyurl = "https://cors-anywhere.herokuapp.com/";
-
-// const a = async word  => {
-//     const res = await fetch(`${proxyurl}http://www.eki.ee/dict/evs/index.cgi?Q=%${word}&F=V&C06=ru`);
-//     const data = await res.text();
-//     return data;
-// }
-
-
-// a('молоко')
-//     .then(data => console.log(data))
